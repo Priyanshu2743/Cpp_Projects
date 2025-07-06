@@ -1,0 +1,16 @@
+domains
+list = integer *
+
+predicates
+reverse (list, list) 
+append (list, list, list)
+
+Clauses
+append ([], [H|T], [H|T]).
+append ([H|T], [], [H|T).
+append([], [], []).
+append ([H1|T1], [H|T], [H1|T2) :- append (T1, [H|T], T2).
+
+reverse ([], []).
+reverse ([X], [X]).
+reverse ([H|T], R) -: reverse (T, NR), append(NR, [H], R).

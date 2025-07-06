@@ -1,0 +1,13 @@
+domains
+list = integer *
+
+predicates
+replaceall (list, integer, integer, list)
+
+Clauses
+replaceall ([], _, _, []).
+replaceall ([H|T], H, X, [X| T1]) :-
+replaceall (T, H, X, T1) .
+replaceall ([H|T], X, Y, [H|T1]) :-
+H<>Х
+replaceall (T, X, Y, T1).

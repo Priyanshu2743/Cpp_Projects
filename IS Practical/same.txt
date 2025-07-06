@@ -1,0 +1,13 @@
+domains
+list = integer *
+
+predicates 
+same (list, list)
+
+clauses
+member(R, [R|T], T).
+member(R, [H|T], [H|T2]) :- R<>H, 
+			    member(R, T, T2).
+same ([], []).
+same ([X|T1], Y) :- member(X, Y, P), 
+		    same (T1, P).

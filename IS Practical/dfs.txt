@@ -1,0 +1,48 @@
+domains
+list = symbol *
+
+predicates
+child ( symbol, list)
+dfs (list, symbol, list)
+append (list, list, list)
+
+clauses
+child (a, [b, c, d]).
+child (b, [e, f]).
+child (c, [g]).
+child (d, [h, i]).
+child (e, [j, k]).
+child (f, [ ]).
+child (g, [l, m]).
+child (h, []).
+child (i, [n, o]).
+child (j, []).
+child (k, []).
+child (l, [p]).
+child (m, []). 
+child (n, []).
+child (o, []).
+
+append ([], [], []).
+append ([], L, L).
+append (L, [], L).
+append ([H|T1), L, [H|T2]) :- append (T1,L,T2).
+
+dfs ([], _ , []).
+dfs（[H|_］，H，［H]).
+dfs ([H| Tail], Y, Path) :-
+		H<>Y,
+		child (H, L1),
+		append ( L1, Tail, NTail),
+		dfs (NTail, Y, NPath),
+		append ([H], NPath, Path),
+		!.
+
+
+goal :
+	dfs ([a], 0, X)
+	X = [a, b, e, j, k, f, c, g, l, p, d, h, i, n, o]
+	1 solution
+
+	dfs ([a], e, X)
+	X = [a, b, e]

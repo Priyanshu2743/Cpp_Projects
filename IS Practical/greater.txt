@@ -1,0 +1,14 @@
+domains
+list = integer *
+
+predicates
+part (integer, list, list, list) 
+
+clauses 
+part（_, [], [], [].
+part (_, [X|T], [X|T1), P2) :-
+	x <= c,
+	part (C, T, T1, P2). 
+part (C, [X|T], P1, [X|T2]) :-
+	X > C,
+	part (C, T, P1, T2).

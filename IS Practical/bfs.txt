@@ -1,0 +1,41 @@
+domains
+list = symbol *
+
+predicates
+child ( symbol, list)
+dfs (list, symbol, list)
+append (list, list, list)
+
+clauses
+child (a, [b, c, d]).
+child (b, [e, f]).
+child (c, [g]).
+child (d, [h, i]).
+child (e, []).
+child (f, []).
+child (g, [j]).
+child (h, []).
+child (i, []).
+child (j, []).
+
+append ([], [], []).
+append ([], L, L).
+append (L, [], L).
+append ([H|T), L, [H|T1]) :- append (T,L,T1).
+
+bfs ([], _ , []).
+bfs（[H|_］，H，［H]).
+bfs ([H|T], X, L) :-
+		H<>X,
+		child (H, child),
+		append ( T, child, L1),
+		bfs ( L1, X, T1 ),
+		append ([H], T1, L).
+
+
+
+goal:	
+	bfs (["a"], "j", X)
+	X = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j" ]
+	bfs (["a"], c, X)
+	X = ["a", "b", "c"]

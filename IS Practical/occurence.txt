@@ -1,0 +1,13 @@
+domains
+list = integer *
+
+predicates
+occurence (list, integer, integer)
+
+clauses
+occurence ([], _ , 0) ;
+occurence （[H|T], H, N）:- occurence （T, H , N1），
+			    N = 1 + N1.			
+occurence ([H: T], X, N) :- H<>X, 
+			    occurence (T,X,N1), 
+			    N = N1.

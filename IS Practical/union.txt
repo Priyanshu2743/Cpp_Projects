@@ -1,0 +1,16 @@
+domains
+List = integer *
+
+predicates
+union (list, list, list) 
+find (integer, list)
+
+clauses
+find (H, [H:T]).
+find (N, [H:T]) :- H<>N,
+		    find (N, T).
+union ([], L, L) .
+union ([H|T], L2, Result) :- find (H, L2), !,
+			     union (T, L2, Result).
+union ([H|T], L2, [H|Result]) :-
+		union (T, L2, Result).
